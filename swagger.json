@@ -1,0 +1,113 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0", 
+        "title": "My Vehicle Project CRUD",
+        "description": "My User Project Application API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:4000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Vehicles",
+            "description": "API for users in the system"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+
+    "paths": {
+        "/vehicles": {
+            "get": {
+                "tags": ["Vehicles"],
+                "summary": "Get all Vehicles in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Vehicle"
+                        }
+                    }
+                }
+            }
+        },
+        "/vehicle": {
+            "post": {
+                "tags": ["Vehicles"],
+                "description": "Create new vehicle in system",
+                "parameters": [
+                    {
+                        "name": "vehicle",
+                        "in": "body",
+                        "description": "Vehicle that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/Vehicle"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New vehicle is created",
+                        "schema": {
+                            "$ref": "#/definitions/Vehicle"
+                        }
+                    }
+                }
+            }
+        },
+        "/vehicle/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of vehicle that we want to delete",
+                    "type": "integer"
+                }
+            ],
+            "delete": {
+                "tags": ["Vehicles"],
+                "summary": "Delete Vehicle",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Vehicle"
+                        }
+                    }
+                }
+            }
+        }
+  
+    },
+    "definitions": {
+        "Vehicle": {
+            "required": ["id","name"],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
+
+
